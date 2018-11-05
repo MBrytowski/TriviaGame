@@ -6,7 +6,6 @@ $(document).ready(function () {
     var incorrectAnswers = 0;
     var correctAnswers = 0;
     var notAnswered = 0;
-    var newHTML = [];
     var questions = [{
         question: "What is the title of Lifehouse's debut album?",
         choices: ["Lifehouse", "Smoke & Mirrors", "No Name Face", "Stanley Climbfall"],
@@ -72,41 +71,88 @@ $(document).ready(function () {
             //Starts timer
             intervalId = setInterval(decrement, 1000);
 
-            for (var j = 0; j < questions.length; j++) {
-                var choicesArr = questions[j].choices;
-                // newHTML.push(questions[j].question);
-                // newHTML.push(questions[j].choices);
-                for (var i = 0; i < choicesArr.length; i++) {
-                    var button = $('<input type="radio" name="choice"><label>' + choicesArr + '</label><br>');
-                    button.text(choicesArr[i]);
-                    button.attr("data-id", i);
-                    $("#choices").append(button);
-                }
+            var choicesArr = questions[0].choices;
+            //for loops to add radio buttons
+            for (var i = 0; i < choicesArr.length; i++) {
+                var button1 = $('<input type="radio" name="choice1"><label>' + choicesArr + '</label><br>');
+                button1.text(choicesArr[i]);
+                button1.attr("data-one", i);
+                $("#answer1").append(button1);
             }
-            // $(".questions").text(newHTML.join(""));
 
-            // for (var k =0; k < questions.length; k++) {
+            choicesArr = questions[1].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button2 = $('<input type="radio" name="choice2"><label>' + choicesArr + '</label><br>');
+                button2.text(choicesArr[j]);
+                button2.attr("data-two", j);
+                $("#answer2").append(button2);
+            }
 
-            // }
-            // $("#choices").text(answers.join(""));
+            choicesArr = questions[2].choices;
+            for (var k = 0; k < choicesArr.length; k++) {
+                var button3 = $('<input type="radio" name="choice3"><label>' + choicesArr + '</label><br>');
+                button3.text(choicesArr[k]);
+                button3.attr("data-three", k);
+                $("#answer3").append(button3);
+            }
 
-            // $(".questions").prepend(questions[currentQ].question);
+            choicesArr = questions[3].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button4 = $('<input type="radio" name="choice4"><label>' + choicesArr + '</label><br>');
+                button4.text(choicesArr[j]);
+                button4.attr("data-four", j);
+                $("#answer4").append(button4);
+            }
+
+            choicesArr = questions[4].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button5 = $('<input type="radio" name="choice5"><label>' + choicesArr + '</label><br>');
+                button5.text(choicesArr[j]);
+                button5.attr("data-five", j);
+                $("#answer5").append(button5);
+            }
+
+            choicesArr = questions[5].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button6 = $('<input type="radio" name="choice6"><label>' + choicesArr + '</label><br>');
+                button6.text(choicesArr[j]);
+                button6.attr("data-six", j);
+                $("#answer6").append(button6);
+            }
+
+            choicesArr = questions[6].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button7 = $('<input type="radio" name="choice7"><label>' + choicesArr + '</label><br>');
+                button7.text(choicesArr[j]);
+                button7.attr("data-seven", j);
+                $("#answer7").append(button7);
+            }
+
+            choicesArr = questions[7].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button8 = $('<input type="radio" name="choice8"><label>' + choicesArr + '</label><br>');
+                button8.text(choicesArr[j]);
+                button8.attr("data-eight", j);
+                $("#answer8").append(button8);
+            }
+
+            choicesArr = questions[8].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button9 = $('<input type="radio" name="choice9"><label>' + choicesArr + '</label><br>');
+                button9.text(choicesArr[j]);
+                button9.attr("data-nine", j);
+                $("#answer9").append(button9);
+            }
+
+            choicesArr = questions[9].choices;
+            for (var j = 0; j < choicesArr.length; j++) {
+                var button10 = $('<input type="radio" name="choice10"><label>' + choicesArr + '</label><br>');
+                button10.text(choicesArr[j]);
+                button10.attr("data-ten", j);
+                $("#answer10").append(button10);
+            }
 
 
-            //for loop to add radio buttons
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button = $('<input type="radio" name="choice"><label>' + choicesArr + '</label><br>');
-            //     button.text(choicesArr[i]);
-            //     button.attr("data-id", i);
-            //     $("#choices").append(button);
-            // }
-
-            // if (questions[currentQ]) {
-
-
-
-
-            // }
         }
 
         function decrement() {
@@ -119,41 +165,41 @@ $(document).ready(function () {
             }
         }
 
-        // $("#nextBtn").on("click", function () {
-        //     currentQ++;
-        // });
-        // console.log(currentQ);
 
 
 
-        // $("#choices").on("click", "#nextBtn", function () {
-        //     var userGuess = $(this).data("id");
-        //     index = questions[currentQ].correct;
-        //     correct = questions[currentQ].choices[index];
-        //     currentQ++;
 
-        //     if (userGuess === index) {
-        //         correctAnswers++;
-        //     } else {
-        //         incorrectAnswers++;
-        //     }
-        // });
+
+
+        // if (userGuess === index) {
+        //     correctAnswers++;
+        // } else {
+        //     incorrectAnswers++;
+        // }
+
 
 
     });
 
-
-
-    // function nextQ() {
-    //     currentQ++;
-    // }
-
-
-
+    
+    index = questions[0].correct;
+    // correct = questions[0].choices[index];
 
 
     //If user has attempted all questions before time runs out, click submit
     $("#submitBtn").on("click", function () {
+        var userGuess = $('input:radio[name="choice1"]:checked').val();
+        // var selectedVal = checkVal(userGuess);
+
+        if (userGuess === index) {
+            correctAnswers++;
+        } else if (userGuess != index){
+            incorrectAnswers++;
+        } else {
+            notAnswered++;
+        }
+
+
         stop();
         endGame();
     })
