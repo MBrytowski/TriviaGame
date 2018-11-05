@@ -1,17 +1,14 @@
 //Game start
 $(document).ready(function () {
-    // $(".questions").hide();
-    $("#quizTime").hide();
-    $("#submitBtn").hide();
-    $("#restartBtn").hide();
-    $("#stats").hide();
     var timeStart = 120;
+    var currentQ = 0;
     var intervalId;
     var incorrectAnswers = 0;
     var correctAnswers = 0;
     var notAnswered = 0;
+    var newHTML = [];
     var questions = [{
-        question: "What is the title of Lifehouse's first album?",
+        question: "What is the title of Lifehouse's debut album?",
         choices: ["Lifehouse", "Smoke & Mirrors", "No Name Face", "Stanley Climbfall"],
         correct: 2
     }, {
@@ -51,18 +48,65 @@ $(document).ready(function () {
         choices: ["14", "21", "7", "28"],
         correct: 0
     }];
+    $(".questions").hide();
+    $("#quizTime").hide();
+    $("#submitBtn").hide();
+    $("#restartBtn").hide();
+    $("#stats").hide();
+    $("#choices").hide();
+    $("#nextBtn").hide();
+
 
     //Clicking start begins timer and hides non necessary text
     $("#startBtn").on("click", function () {
         $("#quizTime").show();
-        // $(".questions").show();
+        $(".questions").show();
         $("#submitBtn").show();
         $("#startBtn").hide();
+        $("#choices").show();
+        $("#nextBtn").show();
         run();
 
         function run() {
             clearInterval(intervalId);
+            //Starts timer
             intervalId = setInterval(decrement, 1000);
+
+            for (var j = 0; j < questions.length; j++) {
+                var choicesArr = questions[j].choices;
+                // newHTML.push(questions[j].question);
+                // newHTML.push(questions[j].choices);
+                for (var i = 0; i < choicesArr.length; i++) {
+                    var button = $('<input type="radio" name="choice"><label>' + choicesArr + '</label><br>');
+                    button.text(choicesArr[i]);
+                    button.attr("data-id", i);
+                    $("#choices").append(button);
+                }
+            }
+            // $(".questions").text(newHTML.join(""));
+
+            // for (var k =0; k < questions.length; k++) {
+
+            // }
+            // $("#choices").text(answers.join(""));
+
+            // $(".questions").prepend(questions[currentQ].question);
+
+
+            //for loop to add radio buttons
+            // for (var i = 0; i < choicesArr.length; i++) {
+            //     var button = $('<input type="radio" name="choice"><label>' + choicesArr + '</label><br>');
+            //     button.text(choicesArr[i]);
+            //     button.attr("data-id", i);
+            //     $("#choices").append(button);
+            // }
+
+            // if (questions[currentQ]) {
+
+
+
+
+            // }
         }
 
         function decrement() {
@@ -74,7 +118,39 @@ $(document).ready(function () {
                 endGame();
             }
         }
-    })
+
+        // $("#nextBtn").on("click", function () {
+        //     currentQ++;
+        // });
+        // console.log(currentQ);
+
+
+
+        // $("#choices").on("click", "#nextBtn", function () {
+        //     var userGuess = $(this).data("id");
+        //     index = questions[currentQ].correct;
+        //     correct = questions[currentQ].choices[index];
+        //     currentQ++;
+
+        //     if (userGuess === index) {
+        //         correctAnswers++;
+        //     } else {
+        //         incorrectAnswers++;
+        //     }
+        // });
+
+
+    });
+
+
+
+    // function nextQ() {
+    //     currentQ++;
+    // }
+
+
+
+
 
     //If user has attempted all questions before time runs out, click submit
     $("#submitBtn").on("click", function () {
@@ -89,22 +165,29 @@ $(document).ready(function () {
 
     //End of game stats
     function endGame() {
-        // $(".questions").hide();
+        $(".questions").hide();
         $("#quizTime").hide();
         $("#submitBtn").hide();
         $("#stats").show();
-        $("#restartBtn").show()
+        $("#restartBtn").show();
+        $("#choices").hide();
+        $("#nextBtn").hide();
+        $(".correct").text("Answered Correctly: " + correctAnswers);
+        $(".incorrect").text("Answered Incorrectly: " + incorrectAnswers);
+        $(".unanswered").text("Unanswered: " + notAnswered);
 
     }
 
     //Restart to first screen
     $("#restartBtn").on("click", function () {
-        // $(".questions").hide();
+        $(".questions").hide();
         $("#quizTime").hide();
         $("#submitBtn").hide();
         $("#restartBtn").hide();
         $("#stats").hide();
         $("#startBtn").show();
+        $("#choices").hide();
+        $("#nextBtn").hide();
         incorrectAnswers = 0;
         correctAnswers = 0;
         notAnswered = 0;
