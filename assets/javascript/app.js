@@ -153,10 +153,6 @@ $(document).ready(function () {
                 $("#answer10").append(button10);
             }
 
-            userGuess.push("<div class='question'><h2>" + questions[i].question +
-            "</h2></div>" + "<div class='choices'>" + choices.join(" ") +
-            "</div><br>")
-
 
         };
 
@@ -182,6 +178,10 @@ $(document).ready(function () {
 
     });
 
+    //Attach values to radio buttons, that seems to be what is missing,
+    //all questions are showing "unanswered" in the stats page.
+
+
     function checkAns() {
         for (i = 0; i < questions.length; i++) {
 
@@ -197,13 +197,6 @@ $(document).ready(function () {
         }
     };
 
-    // function c() {
-    //     if ($("input[name=choice_num]:checked").val() === questions[0].correct) {
-    //       correctAnswers++;
-    //     } else {
-    //         incorrectAnswers++;
-    //     };
-    //   };
 
     
     // index = questions[0].correct;
