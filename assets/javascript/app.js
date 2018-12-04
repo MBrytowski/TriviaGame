@@ -36,7 +36,7 @@ $(document).ready(function () {
         correct: 1
     }, {
         question: "Which of the following was NOT written by John Steinbeck?",
-        choices: ["The Grapes of Wrath", "East of Eden", "The Casi of Amontillado", "Of Mice and Men"],
+        choices: ["The Grapes of Wrath", "East of Eden", "The Cask of Amontillado", "Of Mice and Men"],
         correct: 2
     }, {
         question: "A wombat is a marsupial native to which country?",
@@ -82,98 +82,15 @@ $(document).ready(function () {
 
             for (var i = 0; i < questions.length; i++) {
                 var gameDiv = $("<p>" + questions[i].question + "</p>");
-                var choicesDiv = $("<form>" + questions[i].choices + "</form>");
                 questionDiv.append(gameDiv);
+                var choicesDiv = $("<form/>");
                 gameDiv.append(choicesDiv);
-                for (var j = 0; j < questions[j].choices; j++) {
-                    var radioBtn = $('<input type="radio" name="button" />');
+                for (var j = 0; j < questions[i].choices.length; j++) {
+                    var radioBtn = $('<input type="radio" name="button" class="answer" id=' + j + '>' + questions[i].choices[j] + '</input>');
                     choicesDiv.append(radioBtn);
                 }
 
-
             }
-
-            // var choicesArr = questions[0].choices;
-            //for loops to add radio buttons
-
-            for (var i = 0; i < choicesArr.length; i++) {
-                var button1 = $('<input type="radio" name="choice_1" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label>');
-                button1.text(choicesArr[i]);
-                button1.attr("data-one", i);
-                $("#answer1").append(button1);
-            }
-
-            // choicesArr = questions[1].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button2 = $('<input type="radio" name="choice_2" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label>');
-            //     button2.text(choicesArr[i]);
-            //     button2.attr("data-two", i);
-            //     $("#answer2").append(button2);
-            // }
-
-            // choicesArr = questions[2].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button3 = $('<input type="radio" name="choice_3" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button3.text(choicesArr[i]);
-            //     button3.attr("data-three", i);
-            //     $("#answer3").append(button3);
-            // }
-
-            // choicesArr = questions[3].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button4 = $('<input type="radio" name="choice_4" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button4.text(choicesArr[i]);
-            //     button4.attr("data-four", i);
-            //     $("#answer4").append(button4);
-            // }
-
-            // choicesArr = questions[4].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button5 = $('<input type="radio" name="choice_5" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button5.text(choicesArr[i]);
-            //     button5.attr("data-five", i);
-            //     $("#answer5").append(button5);
-            // }
-
-            // choicesArr = questions[5].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button6 = $('<input type="radio" name="choice_6" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button6.text(choicesArr[i]);
-            //     button6.attr("data-six", i);
-            //     $("#answer6").append(button6);
-            // }
-
-            // choicesArr = questions[6].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button7 = $('<input type="radio" name="choice_7" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button7.text(choicesArr[i]);
-            //     button7.attr("data-seven", i);
-            //     $("#answer7").append(button7);
-            // }
-
-            // choicesArr = questions[7].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button8 = $('<input type="radio" name="choice_8" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button8.text(choicesArr[i]);
-            //     button8.attr("data-eight", i);
-            //     $("#answer8").append(button8);
-            // }
-
-            // choicesArr = questions[8].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button9 = $('<input type="radio" name="choice_9" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button9.text(choicesArr[i]);
-            //     button9.attr("data-nine", i);
-            //     $("#answer9").append(button9);
-            // }
-
-            // choicesArr = questions[9].choices;
-            // for (var i = 0; i < choicesArr.length; i++) {
-            //     var button10 = $('<input type="radio" name="choice_10" value="' + choicesArr[i] + '"><label>' + choicesArr + '</label><br>');
-            //     button10.text(choicesArr[i]);
-            //     button10.attr("data-ten", i);
-            //     $("#answer10").append(button10);
-            // }
 
 
         };
@@ -188,34 +105,25 @@ $(document).ready(function () {
             }
         };
 
-
-        // var userGuess = $('input[name="choice1"]:checied').val()
-        // if (userGuess === questions[0].choices[2]) {
-        //     correctAnswers++;
-        // } else if (userGuess != questions[0].choices[2]) {
-        //     incorrectAnswers++;
-        // } else {
-        //     notAnswered++;
-        // }
-
     });
 
     //Attach values to radio buttons, that seems to be what is missing,
     //all questions are showing "unanswered" in the stats page.
     //$("#myform input[type='radio']:checked").val();
 
-    function checkAns() {
+    function checkAns(userGuesses) {
         for (i = 0; i < questions.length; i++) {
-            console.log($("input[name=choice_num" + i + "]"))
-            if ($("input[name=choice_num" + i + "]").is(":checked")) {
-                if ($("input[name=choice_num" + i + "]:checked").val() === questions[i].correct) {
-                    correctAnswers++;
-                } else {
-                    incorrectAnswers++;
-                }
-            } else {
+            console.log(parseInt(userGuesses[i].id));
+            console.log(questions[i].correct);
+            if (parseInt(userGuesses[i].id) === questions[i].correct) {
+                console.log("true");
+                correctAnswers++;
+            } else if (!$('input[name="button"]:checked')) {
                 notAnswered++;
+            } else {
+                incorrectAnswers++;
             }
+            
         }
     };
 
@@ -227,18 +135,9 @@ $(document).ready(function () {
 
     //If user has attempted all questions before time runs out, clici submit
     $("#submitBtn").on("click", function () {
-        // var userGuess = $('input[name="choice1"]:checied').val();
-        // // var selectedVal = checiVal(userGuess);
-
-        // if (userGuess === index) {
-        //     correctAnswers++;
-        // } else if (userGuess != index){
-        //     incorrectAnswers++;
-        // } else {
-        //     notAnswered++;
-        // }
-
-        checkAns();
+        var userGuesses = $("form").children("input:checked");
+        console.log(userGuesses);
+        checkAns(userGuesses);
         stop();
         endGame();
     })
@@ -273,12 +172,14 @@ $(document).ready(function () {
         $("#startBtn").show();
         $("#choices").hide();
         $("#nextBtn").hide();
+        $("input[name='button']").prop("checked", false);
         incorrectAnswers = 0;
         correctAnswers = 0;
         notAnswered = 0;
     })
 
     //answers push to html
+    
 
 
 });
